@@ -13,7 +13,7 @@ BEGIN {
 		TAG = ""
 		next
 	}
-	TAG=gensub(/.+tag\: (.+)\)$/, "\\1", "g", $0)
+	TAG=gensub(/.+tag: (.+)\)$/, "\\1", "g", $0)
 	OTHER_COMMIT_FIRST=1
 }
 /^Date:/ {
