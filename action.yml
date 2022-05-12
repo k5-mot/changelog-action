@@ -15,10 +15,11 @@ runs:
   steps:
     - shell: bash
       run: |
+        echo $GITHUB_WORKSPACE
+        echo $(pwd)
         git config --global user.email "simple@simple.com"
         git config --global user.name "CHANGELOG Action"
         git log --decorate | awk -f ./generate-changelog.awk > $GITHUB_WORKSPACE/.github/CHANGELOG.md
         git add $GITHUB_WORKSPACE/.github/CHANGELOG.md
         git commit --verbose -m "${{inputs.MESSAGE}}"
         git push --verbose "https://${{github.actor}}:${{inputs.GITHUB_TOKEN}}@github.com/${{github.repository}}.git"
-
