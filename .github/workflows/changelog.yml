@@ -16,5 +16,5 @@ jobs:
       - name: "CHANGELOG Action"
         uses: k5-mot/changelog-action@main
         with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{env.GITHUB_TOKEN}}
 
