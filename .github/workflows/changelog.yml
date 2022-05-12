@@ -18,3 +18,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{env.GITHUB_TOKEN}}
 
+      - name: "DEBUG"
+        run: |
+          echo $GITHUB_WORKSPACE
+          echo $(pwd)
