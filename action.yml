@@ -1,0 +1,23 @@
+name: "CHANGELOG Action"
+description: "Generate CHANGELOG.md"
+
+inputs:
+  MESSAGE:
+    description: "Commit message"
+    required: false
+    default: ":robot: CHANGELOG Action"
+  GITHUB_TOKEN:
+    description: "GitHub Token"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        git config --global user.email "simple@simple.com"
+        git config --global user.name "CHANGELOG Action"
+        git log --decorate | awk -f ./generate-changelog.awk
+        git commit --verbose -m "${{inputs.MESSAGE}}"
+        git push --verbose "https://${{github.actor}}:${{inputs.GITHUB_TOKEN}}@github.com/${{github.repository}}.git"
+

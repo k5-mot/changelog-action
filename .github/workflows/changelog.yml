@@ -1,0 +1,20 @@
+name: "CHANGELOG Action"
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  ubuntu-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "CHANGELOG Action"
+        uses: k5-mot/changelog-action@main
+        with:
+          GITHUB_TOKEN: ${{env.GITHUB_TOKEN}}
+
